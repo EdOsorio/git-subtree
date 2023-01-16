@@ -1,0 +1,5 @@
+.tabsContainer {
+  border-bottom: 2px solid var(--primary-color-theme);
+  background-color: #fff;
+  color: var(--tertiary-color-theme);
+}
