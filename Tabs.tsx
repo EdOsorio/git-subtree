@@ -10,7 +10,7 @@ interface TabsHNProps {
 
 interface TabHNProps {
   key: number;
-  label: string;
+  label: React.ReactNode;
 }
 
 const StyledTabs = styled(Tabs)<any>(({ theme }) => ({
