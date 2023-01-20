@@ -19,7 +19,6 @@ const LinkButton = (props: LinkButtonProps) => {
   }, [link, router, onClick]);
   return (
     <button
-      type="button"
       className={className}
       onClick={clickHandler}
       onMouseEnter={onMouseEnter}
