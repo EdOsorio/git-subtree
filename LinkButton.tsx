@@ -16,7 +16,7 @@ const LinkButton = (props: LinkButtonProps) => {
   const router = useRouter();
   const clickHandler = useCallback(() => {
     router.push(link);
-  }, [link, router, onClick]);
+  }, [link, router]);
   return (
     <button
       className={className}
