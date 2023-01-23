@@ -5,9 +5,7 @@ const GearIcon = (props: React.ComponentProps<typeof SvgIcon>) => {
     <SvgIcon viewBox="0 0 12 12" {...props}>
       <defs>
         <style>
-          {
-            '.cls-1{stroke:var(--text-color-secondary);stroke-miterlimit:10;stroke-width:.25px}'
-          }
+          {'.cls-1{stroke:currentColor;stroke-miterlimit:10;stroke-width:.6px}'}
         </style>
       </defs>
       <path
