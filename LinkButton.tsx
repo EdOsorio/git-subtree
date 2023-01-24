@@ -11,8 +11,7 @@ interface LinkButtonProps {
 }
 
 const LinkButton = (props: LinkButtonProps) => {
-  const { children, className, link, onClick, onMouseEnter, onMouseLeave } =
-    props;
+  const { children, className, link, onMouseEnter, onMouseLeave } = props;
   const router = useRouter();
   const clickHandler = useCallback(() => {
     router.push(link);
