@@ -1,3 +1,4 @@
+import { Box, styled } from '@mui/material';
 import {
   AgGridHNResponsive,
   AgGridReactHNProps,
@@ -14,6 +15,19 @@ export const gridIcons = {
   groupContracted: folderContracted
 };
 
+const TreeTabContainer = styled(Box)({
+  flex: 1,
+  position: 'relative'
+});
+
+const AgGridLoaderEmbeded = styled(AgGridLoader)({
+  position: 'absolute',
+  zIndex: 2,
+  width: 'calc(100% - 2px)',
+  top: '1px',
+  left: '1px'
+});
+
 const AgGridTreeDataHN = <Data extends any>(props: AgGridReactHNProps) => {
   const {
     treeData = true,
@@ -27,27 +41,31 @@ const AgGridTreeDataHN = <Data extends any>(props: AgGridReactHNProps) => {
     ...rest
   } = props;
 
-  const isLoadingData =
-    rowModelType === 'clientSide' && (!rowData || rowData.length == 0);
+  const isClientSide = !rowModelType || rowModelType === 'clientSide';
+  const isNotDataAvailable = !rowData || rowData.length == 0;
+
+  const isLoadingData = isClientSide && isNotDataAvailable;
 
   return (
     <>
-      {isLoadingData && <AgGridLoader />}
-      <AgGridHNResponsive<Data>
-        treeData={treeData}
-        animateRows={animateRows}
-        icons={icons}
-        headerHeight={headerHeight}
-        suppressLoadingOverlay={suppressLoadingOverlay}
-        rowModelType={rowModelType}
-        rowData={rowData}
-        className={cx(
-          className,
-          styles['ag-tree-data'],
-          headerHeight === 0 && styles['ag-tree-data-no-header']
-        )}
-        {...rest}
-      />
+      <TreeTabContainer>
+        {isLoadingData && <AgGridLoaderEmbeded />}
+        <AgGridHNResponsive<Data>
+          treeData={treeData}
+          animateRows={animateRows}
+          icons={icons}
+          headerHeight={headerHeight}
+          suppressLoadingOverlay={suppressLoadingOverlay}
+          rowModelType={rowModelType}
+          rowData={rowData}
+          className={cx(
+            className,
+            styles['ag-tree-data'],
+            headerHeight === 0 && styles['ag-tree-data-no-header']
+          )}
+          {...rest}
+        />
+      </TreeTabContainer>
     </>
   );
 };

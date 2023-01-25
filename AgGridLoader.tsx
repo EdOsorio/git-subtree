@@ -1,5 +1,6 @@
 import { Box, styled } from '@mui/material';
 import { BoxProps } from '@mui/system';
+import { cx } from '@purplelab/healthnexus-library-ui';
 
 const WrapperAgGridLoader = styled(Box)({
   background: 'var(--table-even-rows-color)',
@@ -18,8 +19,9 @@ const AgLoadingIcon = styled('span')({
 });
 
 const AgGridLoader = (props: BoxProps) => {
+  const { className, ...rest } = props;
   return (
-    <Box className="ag-theme-balham" {...props}>
+    <Box className={cx('ag-theme-balham', className)} {...rest}>
       <WrapperAgGridLoader>
         <AgLoading className="ag-loading">
           <AgLoadingIcon className="ag-loading-icon">
