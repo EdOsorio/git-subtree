@@ -1,0 +1,9 @@
+.ag-tree-data-no-header :global(.ag-header) {
+  height: 0 !important;
+  min-height: 0 !important;
+  border: 0;
+}
+
+.ag-tree-data :global(.ag-row) :global(.ag-cell) {
+  border: none;
+}
