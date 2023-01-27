@@ -2,17 +2,17 @@ import { Box, styled } from '@mui/material';
 import {
   AgGridHNResponsive,
   AgGridReactHNProps,
-  cx
-  // folderContracted,
-  // folderExpanded
+  cx,
+  folderContracted,
+  folderExpanded
 } from '@purplelab/healthnexus-library-ui';
 import AgGridLoader from '../AgGridLoader';
 
 import styles from './AgGridTreeDataHN.module.css';
 
 export const gridIcons = {
-  groupExpanded: '',
-  groupContracted: ''
+  groupExpanded: folderExpanded,
+  groupContracted: folderContracted
 };
 
 const TreeTabContainer = styled(Box)({
