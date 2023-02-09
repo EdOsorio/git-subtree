@@ -35,13 +35,25 @@ const StyledTabs = styled(Tabs)<any>(({ theme }) => ({
   }
 }));
 
-const TabsHN = ({ tabItems, value, onChange }: TabsHNProps) => (
-  <div className={style.tabsContainer}>
-    <StyledTabs value={value} onChange={onChange} variant={'fullWidth'}>
-      {tabItems.map((item) => (
-        <Tab key={item.key} label={item.label}></Tab>
-      ))}
-    </StyledTabs>
-  </div>
-);
+const TabsHN = ({ tabItems, value, onChange }: TabsHNProps) => {
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`
+    };
+  }
+  return (
+    <div className={style.tabsContainer}>
+      <StyledTabs value={value} onChange={onChange} variant={'fullWidth'}>
+        {tabItems.map((item) => (
+          <Tab
+            key={item.key}
+            label={item.label}
+            {...a11yProps(item.key - 1)}
+          ></Tab>
+        ))}
+      </StyledTabs>
+    </div>
+  );
+};
 export default TabsHN;
