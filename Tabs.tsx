@@ -13,7 +13,7 @@ interface TabHNProps {
   label: React.ReactNode;
 }
 
-const StyledTabs = styled(Tabs)<any>(({ theme }) => ({
+const StyledTabs = styled(Tabs)(({ theme }) => ({
   minHeight: '0',
   height: '40px',
   '& .Mui-selected': {

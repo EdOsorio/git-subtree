@@ -10,7 +10,7 @@ import FilterSearchIcon from './Icons/FilterSearchIcon';
 
 const BadgeStyled = styled(Badge)({
   position: 'absolute',
-  top: '10px',
+  top: '70px',
   left: 0,
   transform: 'translateX(-100%)'
 });
