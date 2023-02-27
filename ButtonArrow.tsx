@@ -1,4 +1,5 @@
 import { IconButton, styled } from '@mui/material';
+import React from 'react';
 
 const IconButtonStyled = styled(IconButton)(({ theme, disabled }) => ({
   cursor: 'pointer',
@@ -17,13 +18,16 @@ const IconButtonStyled = styled(IconButton)(({ theme, disabled }) => ({
   })
 }));
 
-const ButtonArrow = (props: React.ComponentProps<typeof IconButton>) => {
+const ButtonArrow = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof IconButton>
+>(function Button(props, ref) {
   const { children, ...rest } = props;
   return (
-    <IconButtonStyled size="large" {...rest}>
+    <IconButtonStyled ref={ref} size="large" {...rest}>
       {children}
     </IconButtonStyled>
   );
-};
+});
 
 export default ButtonArrow;
