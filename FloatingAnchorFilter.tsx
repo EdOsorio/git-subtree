@@ -35,11 +35,14 @@ const INIT_ANCHOR_ORIGIN = {
 } as BadgeOrigin;
 
 interface IFloatingAnchorFilter {
+  filterCount: number;
+
   ButtonProps?: ButtonProps;
 }
 
 const FloatingAnchorFilter = (props: BadgeProps & IFloatingAnchorFilter) => {
   const {
+    filterCount = 0,
     color = 'error',
     anchorOrigin = INIT_ANCHOR_ORIGIN,
     ButtonProps = {},
@@ -47,7 +50,7 @@ const FloatingAnchorFilter = (props: BadgeProps & IFloatingAnchorFilter) => {
   } = props;
   return (
     <BadgeStyled
-      badgeContent={4}
+      badgeContent={filterCount}
       color={color}
       anchorOrigin={anchorOrigin}
       {...badgeProps}
