@@ -33,7 +33,7 @@ const AgGridTreeDataHN = <Data extends any>(props: AgGridReactHNProps) => {
     treeData = true,
     animateRows = true,
     icons = gridIcons,
-    headerHeight,
+    headerHeight = 0,
     className = '',
     suppressLoadingOverlay = true,
     rowModelType,
