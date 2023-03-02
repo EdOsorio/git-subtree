@@ -1,4 +1,4 @@
-import { styled, Tab, Tabs } from '@mui/material';
+import { styled, Tab, Tabs, Tooltip } from '@mui/material';
 import style from './Tabs.module.css';
 
 interface TabsHNProps {
@@ -11,6 +11,8 @@ interface TabsHNProps {
 interface TabHNProps {
   key: number;
   label: React.ReactNode;
+  disabled?: boolean;
+  toolTipMessage?: string;
 }
 
 const StyledTabs = styled(Tabs)<any>(({ theme }) => ({
@@ -32,6 +34,13 @@ const StyledTabs = styled(Tabs)<any>(({ theme }) => ({
   '& .MuiButtonBase-root.MuiTab-root': {
     fontWeight: '600',
     color: 'var( --text-color-secondary)'
+  },
+  '& .MuiButtonBase-root.MuiTab-root.Mui-disabled': {
+    color: 'rgba(0, 0, 0, 0.38)',
+    pointerEvents: 'auto'
+  },
+  '& .MuiButtonBase-root.MuiTab-root.Mui-disabled:hover': {
+    backgroundColor: 'white'
   }
 }));
 
@@ -48,7 +57,12 @@ const TabsHN = ({ tabItems, value, onChange }: TabsHNProps) => {
         {tabItems.map((item) => (
           <Tab
             key={item.key}
-            label={item.label}
+            label={
+              <Tooltip placement="top" title={item.toolTipMessage}>
+                <span>{item.label}</span>
+              </Tooltip>
+            }
+            disabled={item.disabled}
             {...a11yProps(item.key - 1)}
           ></Tab>
         ))}
