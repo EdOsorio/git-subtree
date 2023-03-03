@@ -19,7 +19,8 @@ const ChipsList = styled('span')({
   height: '100%',
   alignItems: 'center',
   overflowX: 'auto',
-  maxWidth: '100%'
+  maxWidth: '100%',
+  flex: 1
 });
 
 const ChipsLabel = styled(Typography)((props) => ({
