@@ -5,10 +5,17 @@ interface TabPanelProps {
   dir?: string;
   index: number | string;
   value: number | string;
+  shouldUnmountChildren?: boolean;
 }
 
 const TabPanel = (props: TabPanelProps & BoxProps) => {
-  const { children, value, index, ...other } = props;
+  const {
+    children,
+    value,
+    index,
+    shouldUnmountChildren = true,
+    ...other
+  } = props;
 
   return (
     <Box
@@ -18,7 +25,7 @@ const TabPanel = (props: TabPanelProps & BoxProps) => {
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
-      {value === index && children}
+      {shouldUnmountChildren ? value === index && children : children}
     </Box>
   );
 };
