@@ -3,7 +3,7 @@ import { Card, CardProps, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface ChipsContainerProps {
-  label: string;
+  label: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -23,7 +23,7 @@ const ChipsList = styled('span')({
   flex: 1
 });
 
-const ChipsLabel = styled(Typography)((props) => ({
+export const ChipsLabel = styled(Typography)((props) => ({
   marginLeft: '5px',
   height: '32px',
   margin: 'auto',
@@ -40,9 +40,7 @@ const ChipsContainer = (props: ChipsContainerProps & CardProps) => {
   const { label, children, ...cardProps } = props;
   return (
     <CardChips variant="outlined" {...cardProps}>
-      <ChipsLabel fontWeight={600} color="primary">
-        {label}
-      </ChipsLabel>
+      {label}
       <ChipsList>{children}</ChipsList>
     </CardChips>
   );
