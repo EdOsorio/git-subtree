@@ -2,11 +2,6 @@ import { Card, CardProps, Typography } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
 
-interface ChipsContainerProps {
-  label: React.ReactNode;
-  children?: React.ReactNode;
-}
-
 const CardChips = styled(Card)({
   display: 'flex',
   alignItems: 'center',
@@ -36,12 +31,18 @@ export const ChipsLabel = styled(Typography)((props) => ({
   paddingRight: '0'
 }));
 
+interface ChipsContainerProps {
+  label: React.ReactNode;
+  children?: React.ReactNode;
+  ChipsListProps?: React.ComponentProps<typeof ChipsList>;
+}
+
 const ChipsContainer = (props: ChipsContainerProps & CardProps) => {
-  const { label, children, ...cardProps } = props;
+  const { label, children, ChipsListProps = {}, ...cardProps } = props;
   return (
     <CardChips variant="outlined" {...cardProps}>
       {label}
-      <ChipsList>{children}</ChipsList>
+      <ChipsList {...ChipsListProps}>{children}</ChipsList>
     </CardChips>
   );
 };
