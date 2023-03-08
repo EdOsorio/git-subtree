@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import {
   AgGridHNResponsive,
   AgGridReactHNProps,
@@ -6,6 +6,7 @@ import {
   folderContracted,
   folderExpanded
 } from '@purplelab/healthnexus-library-ui';
+import { useState } from 'react';
 import AgGridLoader from '../AgGridLoader';
 
 import styles from './AgGridTreeDataHN.module.css';
@@ -28,28 +29,56 @@ const AgGridLoaderEmbeded = styled(AgGridLoader)({
   left: '1px'
 });
 
-const AgGridTreeDataHN = <Data extends any>(props: AgGridReactHNProps) => {
+const NoRowsOverlay = styled(Box)({
+  flex: 1,
+  position: 'absolute',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%'
+});
+
+interface AgGridTreeDataHN {
+  noRowsOverlayMessage?: string;
+  isLoadingData?: boolean;
+}
+
+const AgGridTreeDataHN = <Data extends any>(
+  props: AgGridReactHNProps & AgGridTreeDataHN
+) => {
   const {
     treeData = true,
     animateRows = true,
+    suppressLoadingOverlay = true,
+    suppressNoRowsOverlay = true,
+    noRowsOverlayMessage = 'No data Found',
     icons = gridIcons,
     headerHeight = 0,
-    className = '',
-    suppressLoadingOverlay = true,
+    className,
     rowModelType,
     rowData,
+    isLoadingData = false,
+    onFilterChanged,
+    onFirstDataRendered,
     ...rest
   } = props;
 
-  const isClientSide = !rowModelType || rowModelType === 'clientSide';
-  const isNotDataAvailable = !rowData || rowData.length == 0;
-
-  const isLoadingData = isClientSide && isNotDataAvailable;
+  const [isNotDataRetrievedState, setIsNotDataRetrievedState] =
+    useState<boolean>(false);
 
   return (
     <>
       <TreeTabContainer>
         {isLoadingData && <AgGridLoaderEmbeded />}
+        {isNotDataRetrievedState && (
+          <NoRowsOverlay>
+            <Typography variant="h4" color="secondary" fontWeight={500}>
+              {noRowsOverlayMessage}
+            </Typography>
+          </NoRowsOverlay>
+        )}
+
         <AgGridHNResponsive<Data>
           treeData={treeData}
           animateRows={animateRows}
@@ -63,6 +92,17 @@ const AgGridTreeDataHN = <Data extends any>(props: AgGridReactHNProps) => {
             styles['ag-tree-data'],
             headerHeight === 0 && styles['ag-tree-data-no-header']
           )}
+          suppressNoRowsOverlay={true}
+          onFilterChanged={(params) => {
+            const displayedRows = params.api.getDisplayedRowCount();
+            setIsNotDataRetrievedState(displayedRows === 0 ? true : false);
+            if (onFilterChanged) onFilterChanged(params);
+          }}
+          onFirstDataRendered={(params) => {
+            const displayedRows = params.api.getDisplayedRowCount();
+            setIsNotDataRetrievedState(displayedRows === 0 ? true : false);
+            if (onFirstDataRendered) onFirstDataRendered(params);
+          }}
           {...rest}
         />
       </TreeTabContainer>
