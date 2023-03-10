@@ -6,7 +6,8 @@ import {
   folderContracted,
   folderExpanded
 } from '@purplelab/healthnexus-library-ui';
-import { useState } from 'react';
+import { GridApi } from 'ag-grid-community';
+import { useEffect, useState } from 'react';
 import AgGridLoader from '../AgGridLoader';
 
 import styles from './AgGridTreeDataHN.module.css';
@@ -52,7 +53,7 @@ const AgGridTreeDataHN = <Data extends any>(
     animateRows = true,
     suppressLoadingOverlay = true,
     suppressNoRowsOverlay = true,
-    noRowsOverlayMessage = 'No data Found',
+    noRowsOverlayMessage = 'No Results Found',
     icons = gridIcons,
     headerHeight = 0,
     className,
@@ -61,16 +62,24 @@ const AgGridTreeDataHN = <Data extends any>(
     isLoadingData = false,
     onFilterChanged,
     onFirstDataRendered,
+    onGridReady,
+    onRowDataUpdated,
     ...rest
   } = props;
 
   const [isNotDataRetrievedState, setIsNotDataRetrievedState] =
     useState<boolean>(false);
 
+  const onUpdateNoDataRetrievedState = (api: GridApi) => {
+    const displayedRows = api.getDisplayedRowCount();
+    setIsNotDataRetrievedState(displayedRows === 0 ? true : false);
+  };
+
   return (
     <>
       <TreeTabContainer>
         {isLoadingData && <AgGridLoaderEmbeded />}
+
         {isNotDataRetrievedState && (
           <NoRowsOverlay>
             <Typography variant="h4" color="secondary" fontWeight={500}>
@@ -94,14 +103,23 @@ const AgGridTreeDataHN = <Data extends any>(
           )}
           suppressNoRowsOverlay={true}
           onFilterChanged={(params) => {
-            const displayedRows = params.api.getDisplayedRowCount();
-            setIsNotDataRetrievedState(displayedRows === 0 ? true : false);
+            onUpdateNoDataRetrievedState(params.api);
+
             if (onFilterChanged) onFilterChanged(params);
           }}
+          onRowDataUpdated={(params) => {
+            onUpdateNoDataRetrievedState(params.api);
+
+            if (onRowDataUpdated) onRowDataUpdated(params);
+          }}
           onFirstDataRendered={(params) => {
-            const displayedRows = params.api.getDisplayedRowCount();
-            setIsNotDataRetrievedState(displayedRows === 0 ? true : false);
+            onUpdateNoDataRetrievedState(params.api);
             if (onFirstDataRendered) onFirstDataRendered(params);
+          }}
+          onGridReady={(params) => {
+            onUpdateNoDataRetrievedState(params.api);
+
+            if (onGridReady) onGridReady(params);
           }}
           {...rest}
         />
