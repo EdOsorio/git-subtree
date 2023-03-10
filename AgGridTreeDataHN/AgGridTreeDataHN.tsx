@@ -82,7 +82,16 @@ const AgGridTreeDataHN = <Data extends any>(
 
         {isNotDataRetrievedState && (
           <NoRowsOverlay>
-            <Typography variant="h4" color="secondary" fontWeight={500}>
+            <Typography
+              variant="h4"
+              color="secondary"
+              fontWeight={400}
+              sx={{
+                fontFamily: 'var(--font-family-apple)',
+                WebkitFontSmoothing: 'antialiased',
+                fontSize: '12px'
+              }}
+            >
               {noRowsOverlayMessage}
             </Typography>
           </NoRowsOverlay>
