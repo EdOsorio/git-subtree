@@ -11,9 +11,6 @@ const Bullet = (props: BoxProps & { size?: string }) => {
           height: size,
           bgcolor: 'success.main',
           borderRadius: '50%'
-          // border: '1px solid #DDDBE3',
-          // boxShadow: '0px 4px 4px 0px #00000040',
-          // opacity: 0.8
         },
         ...sx
       }}
