@@ -46,7 +46,7 @@ const FileUploader = (props: ButtonProps & FileUploaderProps) => {
       onDragLeave={handleDrag}
       sx={{
         ...{
-          background: isDragActive ? 'rgba(115, 86, 121, 0.2)' : 'white'
+          bgcolor: isDragActive ? 'primary.light' : 'white'
         },
         ...sx
       }}
