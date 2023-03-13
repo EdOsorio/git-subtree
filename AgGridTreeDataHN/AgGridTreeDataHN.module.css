@@ -7,3 +7,7 @@
 .ag-tree-data :global(.ag-row) :global(.ag-cell) {
   border: none;
 }
+
+.ag-tree-data :global(.ag-row) :global(.ag-cell) :global(.ag-group-value) {
+  font-family: var(--font-family-apple);
+}

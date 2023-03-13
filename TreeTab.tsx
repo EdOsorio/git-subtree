@@ -16,6 +16,7 @@ export const TreeTab = styled(Tab)(({ theme }) => ({
   background: theme.palette.primary.main,
   fontSize: '1rem',
   color: 'hsla(0,0%,89.4%,0.611764705882353)',
+  fontFamily: 'var(--font-family-mui)',
 
   '&.Mui-selected': {
     color: '#fff'
