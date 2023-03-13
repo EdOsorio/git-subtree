@@ -58,7 +58,10 @@ const TabsHN = ({ tabItems, value, onChange }: TabsHNProps) => {
           <Tab
             key={item.key}
             label={
-              <Tooltip placement="top" title={item.toolTipMessage}>
+              <Tooltip
+                placement="top"
+                title={item.disabled && item.toolTipMessage}
+              >
                 <span>{item.label}</span>
               </Tooltip>
             }
