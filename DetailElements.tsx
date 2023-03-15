@@ -54,6 +54,7 @@ export const DataDetailValue = (props: TypographyProps) => {
       variant="h4"
       fontWeight={400}
       textAlign={isChildren || !desktopSize ? 'start' : 'center'}
+      sx={{ color: 'rgba(0, 0, 0, 0.87)', fontSize: '14px' }}
       {...rest}
     >
       {isChildren ? children : '-'}
