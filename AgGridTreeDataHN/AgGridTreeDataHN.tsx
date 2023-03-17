@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import {
   AgGridHNResponsive,
@@ -7,7 +8,7 @@ import {
   folderExpanded
 } from '@purplelab/healthnexus-library-ui';
 import { GridApi } from 'ag-grid-community';
-import { useEffect, useState } from 'react';
+
 import AgGridLoader from '../AgGridLoader';
 
 import styles from './AgGridTreeDataHN.module.css';

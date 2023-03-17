@@ -1,5 +1,4 @@
-import { Box } from '@mui/material';
-import { BoxProps } from '@mui/material';
+import { Box, BoxProps } from '@mui/material';
 
 const Bullet = (props: BoxProps & { size?: string }) => {
   const { sx = {}, size = '11px', ...rest } = props;
