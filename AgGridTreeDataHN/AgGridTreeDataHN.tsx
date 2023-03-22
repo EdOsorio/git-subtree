@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import {
+  AgGridHN,
   AgGridHNResponsive,
   AgGridReactHNProps,
   cx,
@@ -98,7 +99,7 @@ const AgGridTreeDataHN = <Data extends any>(
           </NoRowsOverlay>
         )}
 
-        <AgGridHNResponsive<Data>
+        <AgGridHN<Data>
           treeData={treeData}
           animateRows={animateRows}
           icons={icons}
