@@ -99,7 +99,7 @@ const AgGridTreeDataHN = <Data extends any>(
           </NoRowsOverlay>
         )}
 
-        <AgGridHN<Data>
+        <AgGridHNResponsive<Data>
           treeData={treeData}
           animateRows={animateRows}
           icons={icons}
