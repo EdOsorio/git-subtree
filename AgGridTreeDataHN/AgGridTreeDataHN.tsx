@@ -100,6 +100,7 @@ const AgGridTreeDataHN = <Data extends any>(
         )}
 
         <AgGridHNResponsive<Data>
+          boxShadow={false}
           treeData={treeData}
           animateRows={animateRows}
           icons={icons}
