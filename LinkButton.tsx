@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { MouseEventHandler, ReactNode, useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 
 interface LinkButtonProps {
   link: string;
