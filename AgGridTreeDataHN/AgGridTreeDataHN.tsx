@@ -44,6 +44,7 @@ const NoRowsOverlay = styled(Box)({
 interface AgGridTreeDataHN {
   noRowsOverlayMessage?: string;
   isLoadingData?: boolean;
+  LoadingCellRenderer?: React.ReactNode;
 }
 
 const AgGridTreeDataHN = <Data extends any>(
@@ -65,6 +66,7 @@ const AgGridTreeDataHN = <Data extends any>(
     onFirstDataRendered,
     onGridReady,
     onRowDataUpdated,
+    LoadingCellRenderer = <AgGridLoaderEmbeded />,
     ...rest
   } = props;
 
@@ -73,13 +75,16 @@ const AgGridTreeDataHN = <Data extends any>(
 
   const onUpdateNoDataRetrievedState = (api: GridApi) => {
     const displayedRows = api.getDisplayedRowCount();
-    setIsNotDataRetrievedState(displayedRows === 0 ? true : false);
+    setIsNotDataRetrievedState(() => {
+      if (isLoadingData) return false;
+      return displayedRows === 0 ? true : false;
+    });
   };
 
   return (
     <>
       <TreeTabContainer>
-        {isLoadingData && <AgGridLoaderEmbeded />}
+        {isLoadingData && LoadingCellRenderer}
 
         {isNotDataRetrievedState && (
           <NoRowsOverlay>
