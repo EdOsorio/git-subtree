@@ -28,7 +28,8 @@ const ToolTipInfo = styled(({ className, ...props }: TooltipProps) => (
     color: theme.palette.primary.main,
     maxWidth: '500px',
     fontSize: '0.9rem',
-    border: 'none'
+    border: 'none',
+    lineHeight: '1.4rem'
   }
 }));
 
