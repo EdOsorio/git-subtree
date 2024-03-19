@@ -71,9 +71,6 @@ const AgGridTreeDataHN = <Data extends any>(
     ...rest
   } = props;
 
-  console.log('AG Tree', props);
-  console.log('Tree Data', treeData);
-
   const [isNotDataRetrievedState, setIsNotDataRetrievedState] =
     useState<boolean>(false);
 
