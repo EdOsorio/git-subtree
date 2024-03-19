@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import {
+  AgGridHN,
   AgGridHNResponsive,
   AgGridReactHNProps,
   cx,
@@ -70,6 +71,9 @@ const AgGridTreeDataHN = <Data extends any>(
     ...rest
   } = props;
 
+  console.log('AG Tree', props);
+  console.log('Tree Data', treeData);
+
   const [isNotDataRetrievedState, setIsNotDataRetrievedState] =
     useState<boolean>(false);
 
@@ -103,7 +107,7 @@ const AgGridTreeDataHN = <Data extends any>(
           </NoRowsOverlay>
         )}
 
-        <AgGridHNResponsive<Data>
+        <AgGridHN<Data>
           boxShadow={false}
           treeData={treeData}
           animateRows={animateRows}
