@@ -113,6 +113,7 @@ const AgGridTreeDataHN = <Data extends any>(
           suppressLoadingOverlay={suppressLoadingOverlay}
           rowModelType={rowModelType}
           rowData={rowData}
+          columnDefs={[{}]}
           className={cx(
             className,
             styles['ag-tree-data'],
