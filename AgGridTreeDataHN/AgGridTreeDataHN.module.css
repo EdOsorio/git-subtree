@@ -11,12 +11,3 @@
 .ag-tree-data :global(.ag-row) :global(.ag-cell) :global(.ag-group-value) {
   font-family: var(--font-family-apple);
 }
-
-.custom-style :global(.ag-center-cols-container) {
-    width: auto !important;
-}
-
-.custom-style :global(.ag-center-cols-container) :global(.ag-row) :global(.ag-cell) {
-  width: auto !important;
-
-}

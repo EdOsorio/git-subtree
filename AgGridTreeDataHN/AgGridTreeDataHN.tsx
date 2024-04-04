@@ -46,7 +46,6 @@ interface AgGridTreeDataHN {
   noRowsOverlayMessage?: string;
   isLoadingData?: boolean;
   LoadingCellRenderer?: React.ReactNode;
-  useCustomStyle?: boolean;
 }
 
 const AgGridTreeDataHN = <Data extends any>(
@@ -83,8 +82,6 @@ const AgGridTreeDataHN = <Data extends any>(
     });
   };
 
-  const customClassName = props.useCustomStyle ? styles['custom-style'] : '';
-
   return (
     <>
       <TreeTabContainer>
@@ -120,8 +117,7 @@ const AgGridTreeDataHN = <Data extends any>(
           className={cx(
             className,
             styles['ag-tree-data'],
-            headerHeight === 0 && styles['ag-tree-data-no-header'],
-            customClassName
+            headerHeight === 0 && styles['ag-tree-data-no-header']
           )}
           suppressNoRowsOverlay={true}
           onFilterChanged={(params) => {
